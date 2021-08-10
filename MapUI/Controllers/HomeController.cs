@@ -26,7 +26,6 @@ namespace MapUI.Controllers
             return View();
         }
 
-
         [HttpPost("Save")]
         public IActionResult Save()
         {

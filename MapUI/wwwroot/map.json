@@ -40,5 +40,35 @@
     "Number": 85,
     "CoordinateX": "3961558.2404995877",
     "CoordinateY": "4799119.524083506"
+  },
+  {
+    "Name": "mustafa",
+    "Number": 1,
+    "CoordinateX": "3635019.255665315",
+    "CoordinateY": "5049832.976858884"
+  },
+  {
+    "Name": "Musa",
+    "Number": 3,
+    "CoordinateX": "3615451.37642431",
+    "CoordinateY": "4843147.252375768"
+  },
+  {
+    "Name": "Nur",
+    "Number": 3,
+    "CoordinateX": "3307257.278378479",
+    "CoordinateY": "4837032.290112954"
+  },
+  {
+    "Name": "Alican",
+    "Number": 5,
+    "CoordinateX": "3950635.1080634426",
+    "CoordinateY": "4967887.48736932"
+  },
+  {
+    "Name": "Halil",
+    "Number": 3,
+    "CoordinateX": "3617897.3613294354",
+    "CoordinateY": "4503155.350563304"
   }
 ]
