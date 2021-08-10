@@ -1,0 +1,44 @@
+[
+  {
+    "Name": "mustafa",
+    "Number": 6,
+    "CoordinateX": "3679046.9839575766",
+    "CoordinateY": "4921418.769339789"
+  },
+  {
+    "Name": "ahmet",
+    "Number": 5,
+    "CoordinateX": "4015369.908412352",
+    "CoordinateY": "4752645.8108861195"
+  },
+  {
+    "Name": "Musa",
+    "Number": 10,
+    "CoordinateX": "3814799.1461920496",
+    "CoordinateY": "4768544.712769436"
+  },
+  {
+    "Name": "Halil",
+    "Number": 0,
+    "CoordinateX": "3895516.6480611954",
+    "CoordinateY": "4778328.652389938"
+  },
+  {
+    "Name": "Elif",
+    "Number": 0,
+    "CoordinateX": "3726743.689607526",
+    "CoordinateY": "5000913.278756372"
+  },
+  {
+    "Name": "Zeynep",
+    "Number": 48,
+    "CoordinateX": "3860049.8669368736",
+    "CoordinateY": "4757537.780696371"
+  },
+  {
+    "Name": "Nur",
+    "Number": 85,
+    "CoordinateX": "3961558.2404995877",
+    "CoordinateY": "4799119.524083506"
+  }
+]

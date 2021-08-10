@@ -1,24 +1,25 @@
-﻿using MapApi.Models;
+﻿using MapApi.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace MapUI.Controllers
 {
-    
+
     public class HomeController : Controller
     {
         [BindProperty]
         public ClickInfo ClickInfo { get; set; }
-
-        AppDbContext db = new();
 
         public IActionResult Index()
         {
@@ -29,17 +30,50 @@ namespace MapUI.Controllers
         [HttpPost("Save")]
         public IActionResult Save()
         {
-            ClickInfo.CoordinateX = HttpContext.Request.Form["CoordinateX"];
-            ClickInfo.CoordinateY = HttpContext.Request.Form["CoordinateY"];
-
-            db.ClickInfos.Add(ClickInfo);
-            db.SaveChanges();
-
-            using (StreamWriter writer = new StreamWriter("map.txt", true)) //// true to append data to the file
+            
+            if (System.IO.File.Exists(@"wwwroot\map.json"))
             {
-                writer.WriteLine(ClickInfo.Name + " - " + ClickInfo.Number + " - " + ClickInfo.CoordinateX + " - " + ClickInfo.CoordinateY);
+                var initialJson = System.IO.File.ReadAllText(@"wwwroot\map.json");
+                var array = JArray.Parse(initialJson);
+                var itemToAdd = new JObject();
+                itemToAdd["Name"] = ClickInfo.Name;
+                itemToAdd["Number"] = ClickInfo.Number;
+                itemToAdd["CoordinateX"] = (string)HttpContext.Request.Form["CoordinateX"];
+                itemToAdd["CoordinateY"] = (string)HttpContext.Request.Form["CoordinateY"];
+                array.Add(itemToAdd);
+
+                var jsonToOutput = JsonConvert.SerializeObject(array, Formatting.Indented);
+                System.IO.File.Delete(@"wwwroot\map.json");
+
+                using (StreamWriter writer = new StreamWriter(@"wwwroot\map.json", true))
+                {
+                    writer.WriteLine(jsonToOutput);
+                }
+            }
+            else
+            {
+                var array = new JArray();
+                var itemToAdd = new JObject();
+                itemToAdd["Name"] = ClickInfo.Name;
+                itemToAdd["Number"] = ClickInfo.Number;
+                itemToAdd["CoordinateX"] = (string)HttpContext.Request.Form["CoordinateX"];
+                itemToAdd["CoordinateY"] = (string)HttpContext.Request.Form["CoordinateY"];
+                array.Add(itemToAdd);
+                var jsonToOutput = JsonConvert.SerializeObject(array, Formatting.Indented);
+                using (StreamWriter writer = new StreamWriter(@"wwwroot\map.json", true))
+                {
+                    writer.WriteLine(jsonToOutput);
+                }
             }
             return RedirectToAction("Index");
+        }
+
+        [HttpGet("ShowRecords")]
+        public IActionResult ShowRecords()
+        {
+            string path = @"wwwroot\map.json";
+            var text = System.IO.File.ReadAllText(path);
+            return Json(text);
         }
     }
 }
